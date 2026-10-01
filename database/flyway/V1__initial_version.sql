@@ -4,6 +4,8 @@ CREATE TABLE generic.store (
   marketplace_type TEXT NOT NULL,
   marketplace_subtype TEXT NOT NULL,
   marketplace_country TEXT NOT NULL,
+  -- Internal identifier. Customisable (e.g. derived from a marketplace-facing ID)
+  -- as long as it keeps the primary key unique.
   source_system_id TEXT NOT NULL,
   is_active BOOLEAN NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -23,6 +25,8 @@ CREATE TABLE generic.product (
   marketplace_type TEXT NOT NULL,
   marketplace_subtype TEXT NOT NULL,
   marketplace_country TEXT NOT NULL,
+  -- Internal identifier. Customisable (e.g. derived from a marketplace-facing ID)
+  -- as long as it keeps the primary key unique.
   source_system_id TEXT NOT NULL,
   seller_sku TEXT NOT NULL,
   product_sku TEXT NOT NULL,
@@ -87,6 +91,8 @@ CREATE TABLE vendor.deductions (
 
 CREATE TABLE vendor.expense_events (
   store_id BIGINT NOT NULL REFERENCES generic.store (store_id) ON DELETE CASCADE,
+  -- Internal identifier. Customisable (e.g. derived from a marketplace-facing ID)
+  -- as long as it keeps the primary key unique.
   source_system_id TEXT NOT NULL,
   product_sku TEXT,
   expense_date TIMESTAMP WITH TIME ZONE NOT NULL,
