@@ -1,7 +1,8 @@
 services:
   postgres:
-    image: timescale/timescaledb:latest-pg16
+    image: docker.io/timescale/timescaledb:latest-pg16
     container_name: marketplace_db
+    pids_limit: -1
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
@@ -21,8 +22,9 @@ services:
       retries: 5
 
   flyway:
-    image: flyway/flyway:latest
+    image: docker.io/flyway/flyway:latest
     container_name: marketplace_flyway
+    pids_limit: -1
     command: -url=jdbc:postgresql://postgres:5432/${POSTGRES_DB:-marketplace} -user=${POSTGRES_USER:-postgres} -password=${POSTGRES_PASSWORD:-postgres} -schemas=generic,vendor,public -connectRetries=60 migrate
     volumes:
       - ./flyway:/flyway/sql

@@ -30,5 +30,9 @@ module.exports = {
       files: ["*.js"],
       parserOptions: { project: null },
     },
+    {
+      files: ["tests/**/*.ts"],
+      parserOptions: { project: null },
+    },
   ],
 };
